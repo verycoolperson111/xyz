@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Myra Piddu❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For-DK❤️</title>
 
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff4444 0%, #ff6666 50%, #ff8888 100%);
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
+            position: relative;
         }
 
         .card {
             text-align: center;
-            background: rgba(255,255,255,0.95);
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.98);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
             animation: fadeIn 1.5s ease-in-out;
+            max-width: 90%;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #ff3366;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ff1744;
+            text-shadow: 2px 2px 4px rgba(255,0,0,0.1);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         p {
-            font-size: 18px;
+            font-size: 1.1rem;
             margin-bottom: 30px;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         button {
-            padding: 12px 30px;
-            font-size: 18px;
+            padding: 14px 35px;
+            font-size: 1rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            margin: 10px;
-            transition: 0.3s;
+            margin: 5px;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         #yes {
-            background-color: #ff3366;
+            background: linear-gradient(135deg, #ff3366, #ff6b9d);
             color: white;
-            box-shadow: 0 5px 15px rgba(255,51,102,0.5);
+            min-width: 120px;
         }
 
         #yes:hover {
-            transform: scale(1.1);
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255,51,102,0.6);
+            background: linear-gradient(135deg, #ff1744, #ff5252);
+        }
+
+        #yes:active {
+            transform: scale(0.95);
         }
 
         #no {
-            background-color: #999;
+            background: linear-gradient(135deg, #999, #666);
             color: white;
             position: relative;
+            min-width: 120px;
+        }
+
+        #no:hover {
+            background: linear-gradient(135deg, #777, #444);
+            transform: translateY(10px);
         }
 
         .heart {
-            position: absolute;
+            position: fixed;
             width: 20px;
             height: 20px;
-            background: red;
+            background: #ff0000;
             transform: rotate(45deg);
             animation: float 6s linear infinite;
+            pointer-events: none;
         }
 
         .heart::before,
@@ -76,7 +117,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: red;
+            background: #ff0000;
             border-radius: 50%;
         }
 
@@ -90,6 +131,18 @@
             top: 0;
         }
 
+        .floating-spark {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: sparkle 1.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 1; transform: translate(0, 0) scale(1); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+        }
+
         @keyframes float {
             0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
@@ -100,12 +153,100 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes popMessage {
+            0% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: scale(0.5) translateY(-100px); }
+        }
+
+        .message-popup {
+            position: fixed;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ff1744;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            animation: popMessage 2s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
         .hidden-message {
             display: none;
-            margin-top: 20px;
-            font-size: 20px;
+            margin-top: 25px;
+            font-size: 1.3rem;
             color: #ff0066;
-            animation: fadeIn 1s ease-in-out;
+            animation: bounce 0.8s ease-in-out;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+
+            .hidden-message {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 0.85rem;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                min-width: 90px;
+            }
+
+            .buttons-container {
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -113,48 +254,125 @@
 <body>
 
 <div class="card">
-    <h1>Myra 💕</h1>
-    <p>14 ko ghumne chalogi</p>
+    <h1>💕 Dhruv 💕</h1>
+    <p>Valentines Day ko ghummi ghummi karne chaloge mere <br>
+         sath mere Sallu? 🌹✨</p>
 
-    <button id="yes" onclick="sayYes()">YES 💖</button>
-    <button id="no" onmouseover="moveButton()">NO 😜</button>
+    <div class="buttons-container">
+        <button id="yes" onclick="sayYes()">YES 💖</button>
+        <button id="no" onclick="moveButton()" ontouchstart="moveButton()">NO 😜</button>
+    </div>
 
     <div class="hidden-message" id="loveMessage">
-        I know you like me 💫
+        You're my favorite Baby💫<br>
+        Let's make this Valentine's unforgettable! 🌹
     </div>
 </div>
 
 <script>
+    // Track which message to show
+    let messageIndex = 0;
+    const messages = [
+        "Come on! 😊",
+        "Really? 😢",
+        "Pretty please? 🥺",
+        "Don't be shy! 😘",
+        "I know you want to! 💕",
+        "Think about it... 🌹",
+        "You know you do! 😉"
+    ];
+
     function sayYes() {
-        document.getElementById("loveMessage").style.display = "block";
+        const card = document.querySelector('.card');
+        const message = document.getElementById("loveMessage");
+        
+        message.style.display = "block";
+        
+        // Create multiple sparkles
+        for(let i = 0; i < 20; i++) {
+            createSparkle();
+        }
+        
+        // Celebrate with extra hearts
+        for(let i = 0; i < 15; i++) {
+            setTimeout(() => createHeart(), i * 100);
+        }
 
         setTimeout(function() {
             window.location.href = "https://www.youtube.com/watch?v=XHjxj78AYc0&list=RDXHjxj78AYc0&start_radio=1";
-        }, 3000);
+        }, 4000);
     }
 
     function moveButton() {
         let button = document.getElementById("no");
-        let x = Math.random() * (window.innerWidth - 100);
-        let y = Math.random() * (window.innerHeight - 50);
+        
+        // Define center area boundaries (around middle of screen)
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const rangeX = 150; // Horizontal range from center
+        const rangeY = 150; // Vertical range from center
+        
+        let x = centerX - rangeX + Math.random() * (rangeX * 2);
+        let y = centerY - rangeY + Math.random() * (rangeY * 2);
 
-        button.style.position = "absolute";
+        button.style.position = "fixed";
         button.style.left = x + "px";
         button.style.top = y + "px";
+        
+        // Get current message
+        const currentMsg = messages[messageIndex];
+        
+        // Create and display message popup
+        let messagePopup = document.createElement("div");
+        messagePopup.className = "message-popup";
+        messagePopup.textContent = currentMsg;
+        messagePopup.style.left = x + 75 + "px";
+        messagePopup.style.top = y - 50 + "px";
+        document.body.appendChild(messagePopup);
+        
+        // Move to next message
+        messageIndex = (messageIndex + 1) % messages.length;
+        
+        // Remove popup after animation
+        setTimeout(() => {
+            messagePopup.remove();
+        }, 2000);
     }
 
-    // Generate floating hearts
-    setInterval(function() {
+    function createHeart() {
         let heart = document.createElement("div");
         heart.className = "heart";
         heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = Math.random() * 100 + "vh";
         heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
         document.body.appendChild(heart);
 
         setTimeout(() => {
             heart.remove();
         }, 6000);
-    }, 300);
+    }
+
+    function createSparkle() {
+        const sparkles = ['✨', '💫', '⭐', '💖'];
+        let sparkle = document.createElement("div");
+        sparkle.className = "floating-spark";
+        sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        sparkle.style.left = Math.random() * window.innerWidth + "px";
+        sparkle.style.top = Math.random() * window.innerHeight + "px";
+        
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 200 + 100;
+        sparkle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+        sparkle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+        
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1500);
+    }
+
+    // Generate floating hearts continuously
+    setInterval(function() {
+        createHeart();
+    }, 500);
 </script>
 
 </body>
