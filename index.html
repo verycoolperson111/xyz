@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Myra Piddu❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff3366;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: #ff3366;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,51,102,0.5);
+        }
+
+        #yes:hover {
+            transform: scale(1.1);
+        }
+
+        #no {
+            background-color: #999;
+            color: white;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ff0066;
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Myra 💕</h1>
+    <p>14 ko ghumne chalogi</p>
+
+    <button id="yes" onclick="sayYes()">YES 💖</button>
+    <button id="no" onmouseover="moveButton()">NO 😜</button>
+
+    <div class="hidden-message" id="loveMessage">
+        I know you like me 💫
+    </div>
+</div>
+
+<script>
+    function sayYes() {
+        document.getElementById("loveMessage").style.display = "block";
+
+        setTimeout(function() {
+            window.location.href = "https://www.youtube.com/watch?v=XHjxj78AYc0&list=RDXHjxj78AYc0&start_radio=1";
+        }, 3000);
+    }
+
+    function moveButton() {
+        let button = document.getElementById("no");
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight - 50);
+
+        button.style.position = "absolute";
+        button.style.left = x + "px";
+        button.style.top = y + "px";
+    }
+
+    // Generate floating hearts
+    setInterval(function() {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }, 300);
+</script>
+
+</body>
+</html>
